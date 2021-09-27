@@ -3,7 +3,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { Image, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Header from "./components/header";
+import Home from "./containers/home";
 
 const Navigation = () => {
   return (
@@ -15,7 +15,7 @@ const Navigation = () => {
 
 const Tab = createMaterialBottomTabNavigator();
 const HomeScreen = () => {
-  return <Header />;
+  return <Home />;
 };
 const SettingsScreen = () => {
   return <Text>SettingsScreen</Text>;
@@ -39,12 +39,10 @@ function MyTabs() {
         options={{
           tabBarLabel: "Home",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="home-outline"
-              color={"orange"}
-              size={26}
+            <Image
+              source={require("../assets/home.png")}
+              style={{ height: "100%", width: "100%" }}
             />
-            // <Image source=""/>
           ),
         }}
       />
@@ -52,10 +50,12 @@ function MyTabs() {
         name="Settings"
         component={SettingsScreen}
         options={{
-          tabBarLabel: "Talk To Astrologer",
+          tabBarLabel: "Talk",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="forum" color={"orange"} size={26} />
-            // <Image source=""/>
+            <Image
+              source={require("../assets/talk.png")}
+              style={{ height: "100%", width: "100%" }}
+            />
           ),
         }}
       />
@@ -65,12 +65,10 @@ function MyTabs() {
         options={{
           tabBarLabel: "Ask Question",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons
-              name="comment-question-outline"
-              color={"orange"}
-              size={26}
+            <Image
+              source={require("../assets/ask.png")}
+              style={{ height: "100%", width: "100%" }}
             />
-            // <Image source=""/>
           ),
         }}
       />
@@ -80,8 +78,10 @@ function MyTabs() {
         options={{
           tabBarLabel: "Reports",
           tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="cog" color={"orange"} size={26} />
-            // <Image source=""/>
+            <Image
+              source={require("../assets/reports.png")}
+              style={{ height: "100%", width: "100%" }}
+            />
           ),
         }}
       />

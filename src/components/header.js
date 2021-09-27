@@ -5,7 +5,7 @@ import { IconButton } from "react-native-paper";
 const Header = () => {
   return (
     <View>
-      <IconButton icon="menu" />
+      <Image source={require("../../assets/hamburger.png")} />
       <Image />
       <IconButton />
     </View>

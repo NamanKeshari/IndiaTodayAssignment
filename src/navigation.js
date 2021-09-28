@@ -4,6 +4,7 @@ import { Image, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Home from "./containers/home";
+import TalkToAstrologers from "./containers/talkToAstrologers";
 
 const Navigation = () => {
   return (
@@ -48,7 +49,7 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Settings"
-        component={SettingsScreen}
+        component={TalkToAstrologers}
         options={{
           tabBarLabel: "Talk",
           tabBarIcon: ({ color }) => (

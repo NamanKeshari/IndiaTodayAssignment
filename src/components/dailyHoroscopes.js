@@ -6,10 +6,9 @@ import { getHoroscope } from "../services/horoscopeServices";
 const SunsignComponent = ({ data }) => {
   return (
     <View style={styles.horoscopeContainer}>
-      {data.map((d) => {
-        console.log(d.images.medium.imageUrl);
+      {data.map((d, i) => {
         return (
-          <View style={{ justifyContent: "center" }}>
+          <View style={{ justifyContent: "center" }} key={i}>
             <Image
               source={{ uri: d.images.medium.imageUrl }}
               style={{ height: 100, width: 100 }}
@@ -27,10 +26,12 @@ const DailyHoroscopes = () => {
   const [horoscopeData, setHoroscopeData] = useState([]);
   const getHoroscopeFunc = async () => {
     const data = await getHoroscope();
-    console.log(data.horoscopes);
+    // console.log(data.horoscopes);
     setHoroscopeData(data.horoscopes);
   };
-  useEffect(() => getHoroscopeFunc(), []);
+  useEffect(() => {
+    getHoroscopeFunc();
+  }, []);
   return (
     <View style={styles.mainContainer}>
       <View style={styles.containerHeader}>

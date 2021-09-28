@@ -4,12 +4,15 @@ import { Text } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { getAstros } from "../services/astroService";
 import DailyHoroscopes from "./dailyHoroscopes";
+import FeedBack from "./feedback";
 import TalkToAnAstrologer from "./talkToAnAstrologer";
 
 const Quote = () => {
-  // useEffect(async () => {
-  //   const data = await getAstros();
-  //   console.log(data);
+  // useEffect(() => {
+  //   (async () => {
+  //     const data = await getAstros();
+  //     console.log(data);
+  //   })();
   // }, []);
   return (
     <View style={styles.container}>
@@ -38,6 +41,8 @@ const Feed = () => {
       <Quote />
       <DailyHoroscopes />
       <TalkToAnAstrologer />
+      <FeedBack />
+      <View style={{ height: 100 }}></View>
     </ScrollView>
   );
 };

@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, View, Image, Text, ScrollView } from "react-native";
 import { Button } from "react-native-paper";
+import { capitalize, joinByComma } from "../helpers/utils";
+import { getAstros } from "../services/astroService";
 
-const AstrologerCard = () => {
+const AstrologerCard = ({ astrologer }) => {
   return (
     <View style={styles.astrologerCard}>
       <Image
         source={{
-          uri: "https://starzspeak.com/uploads/2020/05/Bejan%20Daruwalla%20-%20Top%20Indian%20Astrologer.jpg",
+          uri:
+            astrologer.profliePicUrl ||
+            "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
         }}
         style={{
           height: 180,
@@ -17,12 +21,18 @@ const AstrologerCard = () => {
         }}
       />
       <View style={styles.topContainer}>
-        <Text style={styles.astroName}>Arvind Shukla</Text>
+        <Text style={styles.astroName}>
+          {capitalize(astrologer.firstName)} {capitalize(astrologer.lastName)}
+        </Text>
         <Text style={styles.rating}>4.3</Text>
       </View>
-      <Text style={styles.field}>Coffee Cup Reading</Text>
+      {astrologer?.skills?.length ? (
+        <Text style={styles.field}>{joinByComma(astrologer.skills)}</Text>
+      ) : null}
       <View style={styles.bottomContainer}>
-        <Text style={styles.price}>₹ 500/min</Text>
+        <Text style={styles.price}>
+          ₹ {astrologer.minimumCallDurationCharges}/min
+        </Text>
         <Button
           style={styles.talkBtn}
           labelStyle={{ color: "white" }}
@@ -38,13 +48,15 @@ const AstrologerCard = () => {
 };
 
 const TalkToAnAstrologer = () => {
-  //   const [astrologerData, setAstrologerData] = useState([]);
-  //   const getAstrologerFunc = async () => {
-  //     const data = await getHoroscope();
-  //     console.log(data.horoscopes);
-  //     setHoroscopeData(data.horoscopes);
-  //   };
-  //   useEffect(() => getHoroscopeFunc(), []);
+  const [astrologersData, setAstrologersData] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getAstros();
+      data["astros"].reverse();
+      setAstrologersData(data["astros"]);
+    })();
+  }, []);
   return (
     <View style={styles.mainContainer}>
       <View style={styles.containerHeader}>
@@ -65,10 +77,9 @@ const TalkToAnAstrologer = () => {
         prosperity.
       </Text>
       <ScrollView style={{ flexDirection: "row" }} horizontal={true}>
-        <AstrologerCard />
-        <AstrologerCard />
-        <AstrologerCard />
-        <AstrologerCard />
+        {astrologersData.map((astrologer) => (
+          <AstrologerCard key={astrologer._id} astrologer={astrologer} />
+        ))}
       </ScrollView>
     </View>
   );
@@ -103,7 +114,7 @@ const styles = StyleSheet.create({
     borderColor: "grey",
     borderRadius: 10,
     padding: 10,
-    width: 200,
+    width: 240,
     // shadowColor: "#000",
     // shadowOffset: {
     //   width: 0,

@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, ScrollView } from "react-native";
 import { Text } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { getAstros } from "../services/astroService";
+import DailyHoroscopes from "./dailyHoroscopes";
+import TalkToAnAstrologer from "./talkToAnAstrologer";
 
 const Quote = () => {
-  useEffect(async () => {
-    const data = await getAstros();
-    console.log(data);
-  }, []);
+  // useEffect(async () => {
+  //   const data = await getAstros();
+  //   console.log(data);
+  // }, []);
   return (
     <View style={styles.container}>
       {/* <View style={styles.leftContainer}> */}
@@ -48,9 +50,11 @@ const Quote = () => {
 
 const Feed = () => {
   return (
-    <View style={styles.mainContainer}>
+    <ScrollView style={styles.mainContainer}>
       <Quote />
-    </View>
+      <DailyHoroscopes />
+      <TalkToAnAstrologer />
+    </ScrollView>
   );
 };
 

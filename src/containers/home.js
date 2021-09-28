@@ -17,5 +17,6 @@ export default Home;
 const styles = StyleSheet.create({
   mainContainer: {
     paddingTop: 50,
+    backgroundColor: "white",
   },
 });

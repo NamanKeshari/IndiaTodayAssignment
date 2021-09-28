@@ -5,43 +5,27 @@ import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { getAstros } from "../services/astroService";
 
 const Quote = () => {
-  useEffect(async () => {
-    const data = await getAstros();
-    console.log(data);
-  }, []);
+  // useEffect(async () => {
+  //   const data = await getAstros();
+  //   console.log(data);
+  // }, []);
   return (
     <View style={styles.container}>
-      {/* <View style={styles.leftContainer}> */}
       <View style={styles.quoteContainer}>
-        {/* <View>
-            <Icon
-              name="check-circle"
-              size={18}
-              // color={BlueColor[1]}
-              // style={{ top: -2 }}
-            />
-          </View> */}
         <Text style={{ fontSize: 15 }}>
           "" There is no better boat than horoscope to help a man cross over the
           sea of life. ""
         </Text>
-        {/* <View>
-            <Icon
-              name="check-circle"
-              size={18}
-              // color={BlueColor[1]}
-              // style={{ top: -2 }}
-            />
-          </View> */}
         <Text style={{ textAlign: "center", color: "grey", marginTop: 10 }}>
           - Varhamihira
         </Text>
       </View>
-      <Image
-        source={require("../../assets/ganeshji.png")}
-        style={styles.godImage}
-      />
-      {/* </View> */}
+      <View style={styles.imageContainer}>
+        <Image
+          source={require("../../assets/ganeshji.png")}
+          style={styles.godImage}
+        />
+      </View>
     </View>
   );
 };
@@ -66,14 +50,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+  imageContainer: {
+    height: 80,
+    width: 80,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+    borderColor: "blue",
+    borderWidth: 1,
+  },
   godImage: {
     height: 70,
     width: 70,
     borderRadius: 50,
   },
-  leftContainer: {},
   quoteContainer: {
     width: "70%",
-    // backgroundColor: "red",
   },
 });
